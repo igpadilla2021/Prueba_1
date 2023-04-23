@@ -127,3 +127,59 @@ public class Main {
         System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
     }
 }
+/* deberia dar
+-----Bebida que NO vende-----
+
+null $500
+null $500
+null $500
+null $500
+null $500
+null $500
+
+-----trata de comprar SIN Moneda-----
+
+null $0
+null $0
+null $0
+null $0
+null $0
+null $0
+
+-----con dinero JUSTO para el precio-----
+
+cocacola $0
+cocacola $0
+cocacola $0
+cocacola $0
+cocacola $0
+cocacola $0
+
+-----con MENOS dinero que el precio-----
+
+null $500
+null $500
+null $500
+null $500
+null $500
+null $500
+
+-----con MAS dinero que el precio-----
+
+sprite $500
+sprite $500
+sprite $500
+sprite $500
+sprite $500
+sprite $500
+
+-----Deposito VACIO-----
+
+null $1500
+null $1500
+null $1500
+null $1500
+null $1500
+null $1500
+
+ */
