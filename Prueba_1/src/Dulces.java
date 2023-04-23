@@ -1,12 +1,7 @@
-public abstract class Dulces {
-    private int serie;
-    public Dulces(int numSerie){
-        this.serie=numSerie;
+public abstract class Dulces extends Producto{
+    public Dulces(int numSerie) {
+        super(numSerie);
     }
-    public int getSerie(){
-        return serie;
-    }
-    public abstract String sabor();
 }
 class Snickers extends Dulces{
     public Snickers(int numSerie) {
