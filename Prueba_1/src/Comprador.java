@@ -4,7 +4,7 @@ public class Comprador {
     public Comprador(Moneda m, int cualProducto, Expendedor exp) {
         vuelto=0;
         if (m!=null){
-            Producto b=exp.comprarBebida(m,cualProducto);
+            Producto b=exp.comprarProducto(m,cualProducto);
             if (b!=null){sonido=b.sabor();}
             Moneda val=exp.getVuelto();
             while(val!=null){
