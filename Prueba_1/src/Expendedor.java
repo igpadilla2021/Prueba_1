@@ -1,4 +1,19 @@
+/**
+ *Clase que define a el Expendedor
+ * @author Ignacio Padilla
+ * @author Joaquin Garcia
+ */
+
+
 public class Expendedor {
+    /**
+     * cuatro depositos de tipo Producto para almacenar nuestras bebidas y dulces, y un deposito del tipo Moneda para
+     * almacenar nuestro vuelto en monedas.
+     *
+     * tambien dos Int para definir COCA = 1 y SPRITE = 2
+     *
+     * finalmente dos Int los cuales son el precio de las bebidas y el precio de los dulces
+     */
     private Deposito<Producto> coca;
     private Deposito<Producto> sprite;
     private Deposito<Producto> snickers;
@@ -8,6 +23,13 @@ public class Expendedor {
     public static final int  SPRITE=2;
     private int precioBebidas;
     private int precioDulces;
+
+    /**
+     * metodo constructor de el Expendedor donde se definen todos los depositos de productos y el de monedas, ademas de
+     * rellenar los depositos
+     * @param numBebidas Int de la cantidad de bebidas y dulces con los que se rellenan los depositos
+     * @param precioBebidas Int de el precio que se les da a las bebidas
+     */
     public Expendedor(int numBebidas, int precioBebidas){
         this.precioBebidas=precioBebidas;
         this.precioDulces=precioDulces;
@@ -24,6 +46,15 @@ public class Expendedor {
             super8.add(new Super8(400+p));
         }
     }
+
+    /**
+     * Metodo para comprar productos donde se checkea cual producto se quiere comprar y el valor de la moneda, dando un
+     * vuelto acorde a este valor. Si el producto que se quiere sacar no es ninguno de los disponibles, se returna null
+     * y un vuelto igual a la moneda ingresada
+     * @param m Moneda la cual se ingresa al comprar el producto
+     * @param cual Cual producto es el que se quiere comprar
+     * @return Retorna el producto sacado del deposito que se pide en el parametro cual
+     */
     public Producto comprarProducto(Moneda m,int cual) {
         int p;
         if (cual==1 && m.getValor()>=precioBebidas){
@@ -79,6 +110,11 @@ public class Expendedor {
             return null;
         }
     }
+
+    /**
+     * metodo con el cual se saca el vuelto del deposito de la maquina expendedora
+     * @return vuelto sacado de el deposito de monedas
+     */
     public Moneda getVuelto(){
         return monVu.get();
     }
