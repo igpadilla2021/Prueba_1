@@ -58,13 +58,12 @@ public class Expendedor {
      * @return Retorna el producto sacado del deposito que se pide en el parametro cual
      */
     public Producto comprarProducto(Moneda m,int cual) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
-        monVu=new Deposito<Moneda>();
         int p;
         Producto b;
         if (m==null){
             throw new PagoIncorrectoException("Se intento comprar sin dinero");
         }
-        if ((cual==1 || cual==2 || cual==3 || cual==4) && m.getValor()>=precioBebidas){
+        if (((cual==1 || cual==2) && m.getValor()>=precioBebidas) || ((cual==3 || cual==4) && m.getValor()>=precioDulces)){
             if (cual==1){
                 b = coca.get();
             }
@@ -77,20 +76,25 @@ public class Expendedor {
             else {
                 b=super8.get();
             }
-            if(b!=null){
+            if(b!=null && (cual==1 || cual==2)){
                 for (p=0; p<((m.getValor() - precioBebidas)/100); p=p+1){
+                    this.monVu.add(new Moneda100());
+                }
+            }
+            else if(b != null){
+                for (p=0; p<((m.getValor() - precioDulces)/100); p=p+1){
                     this.monVu.add(new Moneda100());
                 }
             }
             else {
                 monVu.add(m);
-                throw new NoHayProductoException("error, el deposito seleccionado se encuentra vacio o no existe, su vuelto es de $"+m.getValor());
+                throw new NoHayProductoException("ERROR, el deposito seleccionado se encuentra vacio o no existe");
             }
             return b;
         }
         else {
             this.monVu.add(m);
-            throw new PagoInsuficienteException("dinero insuficiente su vuelto es de $"+m.getValor());
+            throw new PagoInsuficienteException("ERROR, dinero insuficiente");
         }
     }
 

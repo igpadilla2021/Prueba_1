@@ -16,14 +16,25 @@ public class Comprador {
      * @param cualProducto numero entero que define cual producto se quiere comprar
      * @param exp define el expendedor del que se va a comprar
      */
-    public Comprador(Moneda m, int cualProducto, Expendedor exp) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
-        vuelto=0;
-        Producto b=exp.comprarProducto(m,cualProducto);
-        sonido=b.sabor();
-        Moneda val=exp.getVuelto();
-        while(val!=null){
-            vuelto= vuelto+val.getValor();
-            val=exp.getVuelto();
+    public Comprador(Moneda m, int cualProducto, Expendedor exp) {
+        try{
+            vuelto=0;
+            Producto b=exp.comprarProducto(m,cualProducto);
+            sonido=b.sabor();
+            Moneda val=exp.getVuelto();
+            while(val!=null){
+                vuelto= vuelto+val.getValor();
+                val=exp.getVuelto();
+            }
+        }
+        catch (PagoInsuficienteException | NoHayProductoException e) {
+            Moneda val=exp.getVuelto();
+            vuelto=val.getValor();
+            System.out.println(e.getMessage());
+        }
+        catch (PagoIncorrectoException e) {
+            Moneda val=exp.getVuelto();
+            System.out.println(e.getMessage());
         }
     }
     /**
