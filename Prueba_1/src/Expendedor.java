@@ -21,6 +21,8 @@ public class Expendedor {
     private Deposito<Moneda> monVu;
     public static final int COCA=1;
     public static final int  SPRITE=2;
+    public static final int  SNIKERS=3;
+    public static final int  SUPER8=4;
     private int precioBebidas;
     private int precioDulces;
 
@@ -30,7 +32,7 @@ public class Expendedor {
      * @param numBebidas Int de la cantidad de bebidas y dulces con los que se rellenan los depositos
      * @param precioBebidas Int de el precio que se les da a las bebidas
      */
-    public Expendedor(int numBebidas, int precioBebidas){
+    public Expendedor(int numBebidas, int precioBebidas, int precioDulces){
         this.precioBebidas=precioBebidas;
         this.precioDulces=precioDulces;
         int p;
@@ -55,10 +57,26 @@ public class Expendedor {
      * @param cual Cual producto es el que se quiere comprar
      * @return Retorna el producto sacado del deposito que se pide en el parametro cual
      */
-    public Producto comprarProducto(Moneda m,int cual) {
+    public Producto comprarProducto(Moneda m,int cual) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
+        monVu=new Deposito<Moneda>();
         int p;
-        if (cual==1 && m.getValor()>=precioBebidas){
-            Producto b= coca.get();
+        Producto b;
+        if (m==null){
+            throw new PagoIncorrectoException("Se intento comprar sin dinero");
+        }
+        if ((cual==1 || cual==2 || cual==3 || cual==4) && m.getValor()>=precioBebidas){
+            if (cual==1){
+                b = coca.get();
+            }
+            else if (cual==2){
+                b = sprite.get();
+            }
+            else if (cual==3){
+                b=snickers.get();
+            }
+            else {
+                b=super8.get();
+            }
             if(b!=null){
                 for (p=0; p<((m.getValor() - precioBebidas)/100); p=p+1){
                     this.monVu.add(new Moneda100());
@@ -66,48 +84,13 @@ public class Expendedor {
             }
             else {
                 monVu.add(m);
-            }
-            return b;
-        }
-        else if(cual==2 && m.getValor()>=precioBebidas){
-            Producto b= sprite.get();;
-            if(b!=null){
-                for (p=0; p<((m.getValor() - precioBebidas)/100); p=p+1){
-                    this.monVu.add(new Moneda100());
-                }
-            }
-            else {
-                monVu.add(m);
-            }
-            return b;
-        }
-        else if(cual==3 && m.getValor()>=precioDulces){
-            Producto b= snickers.get();;
-            if(b!=null){
-                for (p=0; p<((m.getValor() - precioDulces)/100); p=p+1){
-                    this.monVu.add(new Moneda100());
-                }
-            }
-            else {
-                monVu.add(m);
-            }
-            return b;
-        }
-        else if(cual==4 && m.getValor()>=precioDulces){
-            Producto b= super8.get();;
-            if(b!=null){
-                for (p=0; p<((m.getValor() - precioDulces)/100); p=p+1){
-                    this.monVu.add(new Moneda100());
-                }
-            }
-            else {
-                monVu.add(m);
+                throw new NoHayProductoException("error, el deposito seleccionado se encuentra vacio o no existe, su vuelto es de $"+m.getValor());
             }
             return b;
         }
         else {
             this.monVu.add(m);
-            return null;
+            throw new PagoInsuficienteException("dinero insuficiente su vuelto es de $"+m.getValor());
         }
     }
 

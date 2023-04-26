@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  * Clase que define a los depositos ocupados "dentro" de la maquina expendedora
- * @param <tipo> de que tipo de producto es el deposito
+ * @param <tipo> de que tipo de objeto es el deposito
  */
 public class Deposito<tipo> {
     /**
@@ -26,15 +26,15 @@ public class Deposito<tipo> {
 
     /**
      * metodo add donde se añade un producto al arraylist
-     * @param tipo tipo de producto
+     * @param tipo tipo de objeto
      */
     public void add(tipo tipo){
         al.add(tipo);
     }
 
     /**
-     * metodo get donde se saca un producto del arraylist
-     * @return retorna el producto de la posicion 0 en el arraylist. En el caso de que no hayan productos retorna null
+     * metodo get donde se saca un objeto del arraylist
+     * @return retorna el objeto de la posicion 0 en el arraylist. En el caso de que no hayan objetos retorna null
      */
     public tipo get(){
         if (al.size()!=0){

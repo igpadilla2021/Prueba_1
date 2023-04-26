@@ -4,7 +4,6 @@
  * @author Joaquin Garcia
  */
 
-
 public class Comprador {
     /** String e Int para registrar el sabor de lo que consume y el vuelto de este*/
     private String sonido;
@@ -17,19 +16,16 @@ public class Comprador {
      * @param cualProducto numero entero que define cual producto se quiere comprar
      * @param exp define el expendedor del que se va a comprar
      */
-    public Comprador(Moneda m, int cualProducto, Expendedor exp) {
+    public Comprador(Moneda m, int cualProducto, Expendedor exp) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
         vuelto=0;
-        if (m!=null){
-            Producto b=exp.comprarProducto(m,cualProducto);
-            if (b!=null){sonido=b.sabor();}
-            Moneda val=exp.getVuelto();
-            while(val!=null){
-                vuelto= vuelto+val.getValor();
-                val=exp.getVuelto();
-            }
+        Producto b=exp.comprarProducto(m,cualProducto);
+        sonido=b.sabor();
+        Moneda val=exp.getVuelto();
+        while(val!=null){
+            vuelto= vuelto+val.getValor();
+            val=exp.getVuelto();
         }
     }
-
     /**
      *
      * @return vuelto despues de la compra

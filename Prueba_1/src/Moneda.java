@@ -5,7 +5,7 @@
  */
 
 
-public abstract class Moneda {
+public abstract class Moneda implements Comparable<Moneda> {
     /**
      * Metodo constructor de la clase Moneda, se deja vacio ya que es una clase abstracta y queremos heredar estos
      * metodos a otras monedas con valores distintos
@@ -25,25 +25,7 @@ public abstract class Moneda {
      * @return valor de la moneda
      */
     public abstract int getValor();
-}
 
-/**
- * clase de una moneda de 1500 la cual hereda de Moneda
- */
-class Moneda1500 extends Moneda{
-    /**
-     * Hereda el metodo constructor de Moneda
-     */
-    public Moneda1500(){
-        super();
-    }
-    /**
-     * metodo getvalor el cual da el valor de la moneda
-     * @return Int que da el valor 1500
-     */
-    public int getValor() {
-        return 1500;
-    }
 }
 /**
  * clase de una moneda de 1000 la cual hereda de Moneda
@@ -63,6 +45,11 @@ class Moneda1000 extends Moneda{
     public int getValor() {
         return 1000;
     }
+
+    @Override
+    public int compareTo(Moneda o) {
+        return 0;
+    }
 }
 /**
  * clase de una moneda de 500 la cual hereda de Moneda
@@ -81,6 +68,11 @@ class Moneda500 extends Moneda {
     public int getValor() {
         return 500;
     }
+
+    @Override
+    public int compareTo(Moneda o) {
+        return 0;
+    }
 }
 /**
  * clase de una moneda de 100 la cual hereda de Moneda
@@ -98,5 +90,10 @@ class Moneda100 extends Moneda{
      */
     public int getValor() {
         return 100;
+    }
+
+    @Override
+    public int compareTo(Moneda o) {
+        return 0;
     }
 }
