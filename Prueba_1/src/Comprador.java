@@ -49,7 +49,7 @@ public class Comprador {
      *
      * @return "sabor" de el producto consumido
      */
-    public String queBebiste() {
+    public String queConsumiste() {
         return sonido;
     }
 }
