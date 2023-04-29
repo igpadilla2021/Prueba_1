@@ -10,7 +10,7 @@ public class Expendedor {
      * cuatro depositos de tipo Producto para almacenar nuestras bebidas y dulces, y un deposito del tipo Moneda para
      * almacenar nuestro vuelto en monedas.
      *
-     * tambien dos Int para definir COCA = 1 y SPRITE = 2
+     * tambien dos Int para definir COCA = 1, SPRITE = 2, SNIKERS = 3, SUPER8 = 4;
      *
      * finalmente dos Int los cuales son el precio de las bebidas y el precio de los dulces
      */
@@ -29,10 +29,11 @@ public class Expendedor {
     /**
      * metodo constructor de el Expendedor donde se definen todos los depositos de productos y el de monedas, ademas de
      * rellenar los depositos
-     * @param numBebidas Int de la cantidad de bebidas y dulces con los que se rellenan los depositos
+     * @param numProductos Int de la cantidad de bebidas y dulces con los que se rellenan los depositos
      * @param precioBebidas Int de el precio que se les da a las bebidas
+     * @param precioDulces Int de el precio que se les da a los Dulces
      */
-    public Expendedor(int numBebidas, int precioBebidas, int precioDulces){
+    public Expendedor(int numProductos, int precioBebidas, int precioDulces){
         this.precioBebidas=precioBebidas;
         this.precioDulces=precioDulces;
         int p;
@@ -41,7 +42,7 @@ public class Expendedor {
         sprite=new Deposito<Producto>();
         snickers=new Deposito<Producto>();
         super8=new Deposito<Producto>();
-        for(p=0;p!=numBebidas;p=p+1){
+        for(p=0;p!=numProductos;p=p+1){
             coca.add(new CocaCola(100+p));
             sprite.add(new Sprite(200+p));
             snickers.add(new Snickers(300+p));
@@ -61,7 +62,7 @@ public class Expendedor {
         int p;
         Producto b;
         if (m==null){
-            throw new PagoIncorrectoException("Se intento comprar sin dinero");
+            throw new PagoIncorrectoException("ERROR, se intento comprar sin dinero");
         }
         if (((cual==1 || cual==2) && m.getValor()>=precioBebidas) || ((cual==3 || cual==4) && m.getValor()>=precioDulces)){
             if (cual==1){

@@ -1,4 +1,5 @@
 # Nombres:
 
-Ignacio Padilla
-Joaquín García
+Ignacio Alejandro Padilla Palacios
+
+Joaquín Ignacio García Perez
